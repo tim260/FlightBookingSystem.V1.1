@@ -46,7 +46,7 @@ $(document).ready(function(){
                 <select style="width: 30%" name="aircraft">
                     <option value="">All</option>
                     <?php
-						$airc = RealScheduleLiteData::routeaircraft($last_location->arricao);
+						$airc = FBSVData::routeaircraft($last_location->arricao);
 						if(!$airc)
 							{
 								echo '<option>No Aircraft Available!</option>';
@@ -55,7 +55,7 @@ $(document).ready(function(){
 							{
 								foreach ($airc as $air)
 									{
-									$ai = RealScheduleLiteData::getaircraftbyID($air->aircraft);
+									$ai = FBSVData::getaircraftbyID($air->aircraft);
 					?>
 							<option value="<?php echo $ai->icao ;?>"><?php
 							echo $ai->name ;?></option>
@@ -72,7 +72,7 @@ $(document).ready(function(){
                 <select style="width: 30%" name="arricao">
                     <option value="">All</option>
                     <?php
-						$airs = RealScheduleLiteData::arrivalairport($last_location->arricao);
+						$airs = FBSVData::arrivalairport($last_location->arricao);
 						if(!$airs)
 							{
 								echo '<option>No Airports Available!</option>';
