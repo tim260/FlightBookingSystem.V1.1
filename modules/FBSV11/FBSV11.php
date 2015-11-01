@@ -14,8 +14,8 @@ class FBSV11 extends CodonModule
             {
             $this->set('airports', OperationsData::GetAllAirports());
             $this->set('airlines', OperationsData::getAllAirlines());
-            $this->set('aircrafts', FBSV2Data::findaircrafttypes());
-            $this->set('countries', FBSV2Data::findcountries());
+            $this->set('aircrafts', FBSVData::findaircrafttypes());
+            $this->set('countries', FBSVData::findcountries());
             $this->show('fbsv/airport_search.php');
             }
         }
@@ -41,10 +41,10 @@ class FBSV11 extends CodonModule
                     }
                 if($aircraft == !'')
                 {
-                    $aircrafts = FBSV2Data::findaircraft($aircraft);
+                    $aircrafts = FBSVData::findaircraft($aircraft);
                     foreach($aircrafts as $aircraft)
                     {
-                        $route = FBSV2Data::findschedules($arricao, $depicao, $airline, $aircraft->id);
+                        $route = FBSVData::findschedules($arricao, $depicao, $airline, $aircraft->id);
                         if(!$route){$route=array();}
                         if(!$routes){$routes=array();}
                         $routes = array_merge($routes, $route);
@@ -52,7 +52,7 @@ class FBSV11 extends CodonModule
                 }
                 else
                 {
-                $routes = FBSV2Data::findschedule($arricao, $depicao, $airline);
+                $routes = FBSVData::findschedule($arricao, $depicao, $airline);
                 }
 
 		$this->set('allroutes', $routes);
