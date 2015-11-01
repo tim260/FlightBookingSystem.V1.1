@@ -1,7 +1,7 @@
 <?php
 class FBSV11 extends CodonModule
 {
-	public $title = 'Flight Booking System V2.0';
+	public $title = 'Flight Booking System V1.1';
 	
 	public function index() {
             if(isset($this->post->action))
