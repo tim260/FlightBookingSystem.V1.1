@@ -1,7 +1,7 @@
 <script src="http://skyvector.com/linkchart.js"></script>
 <?php
 $pilotid = Auth::$userinfo->pilotid;
-$last_location = FBSV2Data::get_pilot_location($pilotid, 1);
+$last_location = FBSVData::get_pilot_location($pilotid, 1);
 $last_name = OperationsData::getAirportInfo($last_location->arricao);
 ?>
 <h3>Flight Dispatch</h3>

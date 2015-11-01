@@ -73,8 +73,8 @@ class FBSV11 extends CodonModule
                $cost = $_GET['cost'];
                $curmoney = Auth::$userinfo->totalpay;
                $total = ($curmoney - $cost);
-               FBSV2Data::purchase_ticket(Auth::$userinfo->pilotid, $total);
-               FBSV2Data::update_pilot_location($id);
+               FBSVData::purchase_ticket(Auth::$userinfo->pilotid, $total);
+               FBSVData::update_pilot_location($id);
                            
     }
 }

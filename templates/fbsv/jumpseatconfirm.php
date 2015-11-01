@@ -7,7 +7,7 @@
     <tr><td>Travel Class:<b> Employee (Best Available)</b></td></tr>
     <tr><td>Total Cost:<b> $<?php echo $cost; ?></b></td></tr>
 	<tr>
-		<td><a href="<?php echo url('/FBSV2'); ?>"><input class="button alt" type="submit" value="Cancel Purchase"></a>
-		<?php echo '<a href="'.url('/FBSV2/purchase').'?id='.$airport->icao.'&cost='.$cost.'"><input class="button alt" type="submit" value="Purchase Ticket"></a>'; ?></td>
+		<td><a href="<?php echo url('/FBSV11'); ?>"><input class="button alt" type="submit" value="Cancel Purchase"></a>
+		<?php echo '<a href="'.url('/FBSV11/purchase').'?id='.$airport->icao.'&cost='.$cost.'"><input class="button alt" type="submit" value="Purchase Ticket"></a>'; ?></td>
 </tbody>
 </table>

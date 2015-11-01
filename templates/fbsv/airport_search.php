@@ -1,10 +1,10 @@
 <?php
 $pilotid = Auth::$userinfo->pilotid;
-$last_location = FBSV2Data::get_pilot_location($pilotid, 1);
+$last_location = FBSVData::get_pilot_location($pilotid, 1);
 $last_name = OperationsData::getAirportInfo($last_location->arricao);
 if(!$last_location)
 {
-FBSV2Data::update_pilot_location(Auth::$userinfo->hub);
+FBSVData::update_pilot_location(Auth::$userinfo->hub);
 }
 
 ?>
@@ -26,7 +26,7 @@ $(document).ready(function(){
 <ul>
 	<li>Current Location: <b><font color="#FF3300"><?php echo $last_location->arricao?> - <?php echo $last_name->name?></font></b></li>
 </ul>
-<form action="<?php echo url('/FBSV2');?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo url('/FBSV11');?>" method="post" enctype="multipart/form-data">
     <table>
 	    <tr>
             <td >Select An Airline:</td>
@@ -102,7 +102,7 @@ $(document).ready(function(){
 	<li>Your Bank limit is : <font color="#66FF00"><?php echo FinanceData::FormatMoney(Auth::$userinfo->totalpay) ;?></font></li>
 </ul>
 <br />
-<form action="<?php echo url('/FBSV2/jumpseat');?>" method="get">
+<form action="<?php echo url('/FBSV11/jumpseat');?>" method="get">
 	<table>
 		<tr>	
 			<td>select airport to transfer : </td>
