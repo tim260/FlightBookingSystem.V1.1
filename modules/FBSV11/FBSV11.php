@@ -60,14 +60,16 @@ class FBSV11 extends CodonModule
                 
 	}
 	
-	public static function jumpseat()  {
-        $icao = DB::escape($_GET['depicao']);
-        $this->set('airport', OperationsData::getAirportInfo($icao));
-        $this->set('cost', DB::escape($_GET['cost']));
-        $this->show('fbsv/jumpseatconfirm.php');
-    }
+	public function jumpseat()  
+	{
+	        $icao = DB::escape($_GET['depicao']);
+	        $this->set('airport', OperationsData::getAirportInfo($icao));
+	        $this->set('cost', DB::escape($_GET['cost']));
+	        $this->show('fbsv/jumpseatconfirm.php');
+    	}
 
-    public static function purchase()  {
+	public function purchase()  
+	{
        
                $id = DB::escape($_GET['id']);
                $cost = $_GET['cost'];
@@ -75,6 +77,7 @@ class FBSV11 extends CodonModule
                $total = ($curmoney - $cost);
                FBSVData::purchase_ticket(Auth::$userinfo->pilotid, $total);
                FBSVData::update_pilot_location($id);
+               header('Location: '.url('/FBSV11'));
                            
-    }
+    	}
 }
