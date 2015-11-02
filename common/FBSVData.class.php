@@ -80,7 +80,7 @@ class FBSVData extends CodonData
 	
 	public static function get_pilot_location($pilot)
     {
-        $query = "SELECT * FROM flightbookingsystem_location WHERE pilot_id='$pilot'";
+        $query = "SELECT * FROM flightbookingsystem WHERE pilot_id='$pilot'";
 
         $real_location = DB::get_row($query);
 
@@ -95,5 +95,25 @@ class FBSVData extends CodonData
             return $pirep_location;
         }
     }
+	
+	public function routeaircraft($icao)
+	{
+		$sql = "SELECT DISTINCT aircraft FROM phpvms_schedules WHERE depicao = '$icao'";
+		
+		return DB::get_results($sql);
+	}
+	
+	public static function getAircraftByID($id)
+	{
+		$sql = "SELECT * FROM phpvms_aircraft WHERE id ='$id'";
+		return DB::get_row($sql);
+	}
+	
+	public function arrivalairport($icao)
+	{
+		$sql = "SELECT DISTINCT arricao FROM phpvms_schedules WHERE depicao = '$icao'";
+		
+		return DB::get_results($sql);
+	}
 
 }
