@@ -15,7 +15,7 @@ class FBSVData extends CodonData
     }
 
       
-     public function findschedule($arricao, $depicao, $airline)   
+     public static function findschedule($arricao, $depicao, $airline)   
 	 {
         $query = "SELECT phpvms_schedules.*, phpvms_aircraft.name AS aircraft, phpvms_aircraft.registration
                 FROM phpvms_schedules, phpvms_aircraft
