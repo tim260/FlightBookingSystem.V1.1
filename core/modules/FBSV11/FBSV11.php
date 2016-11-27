@@ -4,7 +4,14 @@ class FBSV11 extends CodonModule
 	public $title = 'Flight Booking System V1.1';
 	
 	public function index() {
-            if(isset($this->post->action))
+			
+			$revision = trim(file_get_contents(CORE_PATH.'/version'));
+			if($revision != 'simpilot 5.5.2')
+				{
+					echo '<center>phpVMS Version Installed Is Not Compatible With This Module!</center><br />';
+					echo '<center>phpVMS Version Installed: '.$revision.'</center>';
+				}
+			elseif(isset($this->post->action))
             {
                 if($this->post->action == 'findflight') {
                 $this->findflight();
