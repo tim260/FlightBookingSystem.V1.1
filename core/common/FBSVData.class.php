@@ -3,13 +3,13 @@ class FBSVData extends CodonData
 {
     public function findschedules($arricao, $depicao, $airline, $aircraft)   
 	{
-        $query = "SELECT phpvms_schedules.*, phpvms_aircraft.name AS aircraft, phpvms_aircraft.registration
-               FROM phpvms_schedules, phpvms_aircraft
-                WHERE phpvms_schedules.depicao LIKE '$depicao'
-                AND phpvms_schedules.arricao LIKE '$arricao'
-                AND phpvms_schedules.code LIKE '$airline'
-                AND phpvms_schedules.aircraft LIKE '$aircraft'
-                AND phpvms_aircraft.id LIKE '$aircraft'";
+        $query = "SELECT ".TABLE_PREFIX."schedules.*, ".TABLE_PREFIX."aircraft.name AS aircraft, ".TABLE_PREFIX."aircraft.registration
+               FROM ".TABLE_PREFIX."schedules, ".TABLE_PREFIX."aircraft
+                WHERE ".TABLE_PREFIX."schedules.depicao LIKE '$depicao'
+                AND ".TABLE_PREFIX."schedules.arricao LIKE '$arricao'
+                AND ".TABLE_PREFIX."schedules.code LIKE '$airline'
+                AND ".TABLE_PREFIX."schedules.aircraft LIKE '$aircraft'
+                AND ".TABLE_PREFIX."aircraft.id LIKE '$aircraft'";
 
         return DB::get_results($query);
     }
@@ -17,33 +17,33 @@ class FBSVData extends CodonData
       
      public static function findschedule($arricao, $depicao, $airline)   
 	 {
-        $query = "SELECT phpvms_schedules.*, phpvms_aircraft.name AS aircraft, phpvms_aircraft.registration
-                FROM phpvms_schedules, phpvms_aircraft
-                WHERE phpvms_schedules.depicao LIKE '$depicao'
-                AND phpvms_schedules.arricao LIKE '$arricao'
-                AND phpvms_schedules.code LIKE '$airline'
-                AND phpvms_aircraft.id LIKE phpvms_schedules.aircraft";
+        $query = "SELECT ".TABLE_PREFIX."schedules.*, ".TABLE_PREFIX."aircraft.name AS aircraft, ".TABLE_PREFIX."aircraft.registration
+                FROM ".TABLE_PREFIX."schedules, ".TABLE_PREFIX."aircraft
+                WHERE ".TABLE_PREFIX."schedules.depicao LIKE '$depicao'
+                AND ".TABLE_PREFIX."schedules.arricao LIKE '$arricao'
+                AND ".TABLE_PREFIX."schedules.code LIKE '$airline'
+                AND ".TABLE_PREFIX."aircraft.id LIKE ".TABLE_PREFIX."schedules.aircraft";
 
         return DB::get_results($query);
     }
  
     public static function findaircrafttypes() 
 	{
-        $query = "SELECT DISTINCT icao FROM phpvms_aircraft";
+        $query = "SELECT DISTINCT icao FROM ".TABLE_PREFIX."aircraft";
 
         return DB::get_results($query);
     }
 
     public static function findaircraft($aircraft) 
 	{
-        $query = "SELECT id FROM phpvms_aircraft WHERE icao='$aircraft'";
+        $query = "SELECT id FROM ".TABLE_PREFIX."aircraft WHERE icao='$aircraft'";
 
         return DB::get_results($query);
     }
 
     public static function findcountries() 
 	{
-        $query = "SELECT DISTINCT country FROM phpvms_airports";
+        $query = "SELECT DISTINCT country FROM ".TABLE_PREFIX."airports";
 
         return DB::get_results($query);
     }
@@ -98,20 +98,20 @@ class FBSVData extends CodonData
 	
 	public function routeaircraft($icao)
 	{
-		$sql = "SELECT DISTINCT aircraft FROM phpvms_schedules WHERE depicao = '$icao'";
+		$sql = "SELECT DISTINCT aircraft FROM ".TABLE_PREFIX."schedules WHERE depicao = '$icao'";
 		
 		return DB::get_results($sql);
 	}
 	
 	public static function getAircraftByID($id)
 	{
-		$sql = "SELECT * FROM phpvms_aircraft WHERE id ='$id'";
+		$sql = "SELECT * FROM ".TABLE_PREFIX."aircraft WHERE id ='$id'";
 		return DB::get_row($sql);
 	}
 	
 	public function arrivalairport($icao)
 	{
-		$sql = "SELECT DISTINCT arricao FROM phpvms_schedules WHERE depicao = '$icao'";
+		$sql = "SELECT DISTINCT arricao FROM ".TABLE_PREFIX."schedules WHERE depicao = '$icao'";
 		
 		return DB::get_results($sql);
 	}
